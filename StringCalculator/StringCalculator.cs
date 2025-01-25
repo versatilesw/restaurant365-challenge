@@ -11,7 +11,15 @@
             var delimiters = new[] { ',', '\n' };
             var numbers = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).ToArray();
 
-            return numbers.Select(ParseNumber).Sum();
+            var parsedNumbers = numbers.Select(ParseNumber).ToList();
+
+            var negativeNumbers = parsedNumbers.Where(n => n < 0).ToList();
+            if (negativeNumbers.Any())
+            {
+                throw new ArgumentException($"Negative numbers are not allowed: {string.Join(", ", negativeNumbers)}");
+            }
+
+            return parsedNumbers.Sum();
         }
 
         private int ParseNumber(string value)

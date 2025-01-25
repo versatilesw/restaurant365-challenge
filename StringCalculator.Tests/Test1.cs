@@ -60,12 +60,12 @@ public class CalculatorTests
         Assert.AreEqual(4, result);
     }
 
-    // Test 7: Negative numbers should be treated as 0 (if not explicitly denied)
+    // Test 7: Negative numbers should throw an exception
     [TestMethod]
-    public void Add_NegativeNumbers_TreatedAsZero()
+    [ExpectedException(typeof(ArgumentException))]
+    public void Add_NegativeNumbersThrowException()
     {
-        var result = _calculator.Add("4,-3");
-        Assert.AreEqual(1, result);
+        _calculator.Add("4,-3,-1");
     }
 
     // Test 8: Whitespace in input should be ignored

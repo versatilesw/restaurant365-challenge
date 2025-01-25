@@ -2,8 +2,10 @@
 {
     public class Calculator
     {
-        public int Add(string input)
+        public int Add(string input, out List<int> parsedNumbers)
         {
+            parsedNumbers = new List<int>();
+
             if (string.IsNullOrWhiteSpace(input))
             {
                 return 0;
@@ -36,9 +38,9 @@
                 }
             }
 
-            var numbers = input.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries).ToArray();
+            var numbers = input.Split(delimiters.ToArray(), StringSplitOptions.None).ToArray();
 
-            var parsedNumbers = numbers.Select(ParseNumber).ToList();
+            parsedNumbers = numbers.Select(ParseNumber).ToList();
 
             var negativeNumbers = parsedNumbers.Where(n => n < 0).ToList();
             if (negativeNumbers.Any())
@@ -47,6 +49,12 @@
             }
 
             return parsedNumbers.Sum();
+        }
+
+        // Overloaded version without the out parameters
+        public int Add(string input)
+        {
+            return Add(input, out _); // Calls the original method but ignores out parameters
         }
 
         private int ParseNumber(string value)

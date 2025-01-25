@@ -117,4 +117,15 @@ public class CalculatorTests
         var result = _calculator.Add("//[*][!!][r9r]\n11r9r22*hh*33!!44");
         Assert.AreEqual(110, result);
     }
+
+
+    // Test 14: Verify formula display
+    [TestMethod]
+    public void Add_DisplayFormula_Correctly()
+    {
+        string input = "2,,4,rrrr,1001,6"; // Example input
+        var result = _calculator.Add(input, out var parsedNumbers);
+        Assert.AreEqual(12, result);
+        CollectionAssert.AreEqual(new List<int> { 2, 0, 4, 0, 0, 6 }, parsedNumbers);
+    }
 }

@@ -38,8 +38,10 @@ namespace StringCalculator
 
                 try
                 {
-                    var result = calculator.Add(input.TrimEnd('\n'));
-                    Console.WriteLine($"Result: {result}");
+                    var result = calculator.Add(input.TrimEnd('\n'), out var parsedNumbers);
+                    // Display the formula
+                    string formula = string.Join("+", parsedNumbers.Select(n => n.ToString()));
+                    Console.WriteLine($"{formula} = {result}");
                 }
                 catch (ArgumentException ex)
                 {

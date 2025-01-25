@@ -8,8 +8,8 @@
             {
                 return 0;
             }
-
-            var numbers = input.Split(',').ToArray();
+            var delimiters = new[] { ',', '\n' };
+            var numbers = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).ToArray();
 
             return numbers.Select(ParseNumber).Sum();
         }

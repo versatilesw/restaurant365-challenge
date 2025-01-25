@@ -75,4 +75,12 @@ public class CalculatorTests
         var result = _calculator.Add(" 1 , 2 ");
         Assert.AreEqual(3, result);
     }
+
+    // Test 9: Allow newline as delimiter
+    [TestMethod]
+    public void Add_NewLineAsDelimiter()
+    {
+        var result = _calculator.Add("1\n2,3");
+        Assert.AreEqual(6, result);
+    }
 }

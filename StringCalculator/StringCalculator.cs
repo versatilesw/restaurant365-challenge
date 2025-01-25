@@ -8,8 +8,16 @@
             {
                 return 0;
             }
-            var delimiters = new[] { ',', '\n' };
-            var numbers = input.Split(delimiters, StringSplitOptions.RemoveEmptyEntries).ToArray();
+
+            var delimiters = new List<char> { ',', '\n' };
+
+            if (input.StartsWith("//") && input.Length > 3 && input[3] == '\n')
+            {
+                delimiters.Add(input[2]);
+                input = input.Substring(4);
+            }
+
+            var numbers = input.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries).ToArray();
 
             var parsedNumbers = numbers.Select(ParseNumber).ToList();
 

@@ -91,4 +91,14 @@ public class CalculatorTests
         var result = _calculator.Add("2,1001,6");
         Assert.AreEqual(8, result);
     }
+
+    // Test 11: Support 1 custom delimiter of a single character
+    [TestMethod]
+    public void Add_Support_OneCustomDelimiter()
+    {
+        var result = _calculator.Add("//#\n2#5");
+        Assert.AreEqual(7, result);
+        result = _calculator.Add("//,\n2,ff,100");
+        Assert.AreEqual(102, result);
+    }
 }

@@ -36,12 +36,12 @@ public class CalculatorTests
         Assert.AreEqual(8, result);
     }
 
-    // Test 4: More than two numbers should throw an exception
+    // Test 4: More than two numbers should return their sum
     [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void Add_MoreThanTwoNumbers_ThrowsException()
+    public void Add_MoreThanTwoNumbers_ReturnsSum()
     {
-        _calculator.Add("1,2,3");
+        var result = _calculator.Add("1,2,3");
+        Assert.AreEqual(6, result);
     }
 
     // Test 5: Invalid numbers should be treated as 0

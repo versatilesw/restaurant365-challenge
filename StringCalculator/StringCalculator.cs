@@ -11,11 +11,6 @@
 
             var numbers = input.Split(',').ToArray();
 
-            if (numbers.Length > 2)
-            {
-                throw new ArgumentException("Input cannot contain more than 2 numbers.");
-            }
-
             return numbers.Select(ParseNumber).Sum();
         }
 

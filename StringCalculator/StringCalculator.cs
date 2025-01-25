@@ -29,7 +29,7 @@
                 return 0;
             }
 
-            return int.TryParse(value, out int result) ? result : 0;
+            return int.TryParse(value, out int result) && result <= 1000 ? result : 0;
         }
     }
 }

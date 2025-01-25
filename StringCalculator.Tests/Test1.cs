@@ -83,4 +83,12 @@ public class CalculatorTests
         var result = _calculator.Add("1\n2,3");
         Assert.AreEqual(6, result);
     }
+
+    // Test 10: Make any value greater than 1000 an invalid number
+    [TestMethod]
+    public void Add_BigNumber_TreatedAsInvalid()
+    {
+        var result = _calculator.Add("2,1001,6");
+        Assert.AreEqual(8, result);
+    }
 }

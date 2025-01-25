@@ -14,19 +14,13 @@ namespace StringCalculator
 
             while (true)
             {
-                Console.WriteLine("\nStart entering numbers (type 'exit' to quit):");
+                Console.WriteLine("\nStart entering numbers:");
                 string input = string.Empty;
                 string line;
 
                 while (true)
                 {
                     line = Console.ReadLine();
-
-                    if (line?.ToLower() == "exit")
-                    {
-                        Console.WriteLine("Goodbye!");
-                        return;
-                    }
 
                     if (line?.ToLower() == "done")
                     {

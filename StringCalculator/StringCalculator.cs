@@ -15,12 +15,18 @@
             {
                 if (input[2] == '[')
                 {
-                    int endIndex = input.IndexOf("]\n");
+                    int endIndex = input.IndexOf("\n");
                     if (endIndex > 3)
                     {
-                        string customDelimiter = input.Substring(3, endIndex - 3);
-                        delimiters.Add(customDelimiter);
-                        input = input.Substring(endIndex + 2); // Skip past "]\n"
+                        string delimiterSection = input.Substring(2, endIndex - 2);
+                        var matches = System.Text.RegularExpressions.Regex.Matches(delimiterSection, "\\[(.*?)\\]");
+
+                        foreach (System.Text.RegularExpressions.Match match in matches)
+                        {
+                            delimiters.Add(match.Groups[1].Value);
+                        }
+
+                        input = input.Substring(endIndex + 1);
                     }
                 }
                 else if (input.Length > 3 && input[3] == '\n')

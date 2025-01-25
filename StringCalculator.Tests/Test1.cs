@@ -94,7 +94,7 @@ public class CalculatorTests
 
     // Test 11: Support 1 custom delimiter of a single character
     [TestMethod]
-    public void Add_CustomDelimiter_OneCharacter()
+    public void Add_OneCustomDelimiter_OneCharacter()
     {
         var result = _calculator.Add("//#\n2#5");
         Assert.AreEqual(7, result);
@@ -102,11 +102,19 @@ public class CalculatorTests
         Assert.AreEqual(102, result);
     }
 
-    // Test 12: Support custom delimiter of anylength
+    // Test 12: Support 1 custom delimiter of any length
     [TestMethod]
-    public void Add_Support_CustomDelimiter_AnyLength()
+    public void Add_OneCustomDelimiter_AnyLength()
     {
         var result = _calculator.Add("//[***]\n11***22***33");
         Assert.AreEqual(66, result);
+    }
+
+    // Test 13: Support custom delimiter of anylength
+    [TestMethod]
+    public void Add_MultipleCustomDelimiter_AnyLength()
+    {
+        var result = _calculator.Add("//[*][!!][r9r]\n11r9r22*hh*33!!44");
+        Assert.AreEqual(110, result);
     }
 }

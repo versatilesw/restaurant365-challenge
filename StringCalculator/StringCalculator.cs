@@ -9,12 +9,25 @@
                 return 0;
             }
 
-            var delimiters = new List<char> { ',', '\n' };
+            var delimiters = new List<string> { ",", "\n" };
 
-            if (input.StartsWith("//") && input.Length > 3 && input[3] == '\n')
+            if (input.StartsWith("//"))
             {
-                delimiters.Add(input[2]);
-                input = input.Substring(4);
+                if (input[2] == '[')
+                {
+                    int endIndex = input.IndexOf("]\n");
+                    if (endIndex > 3)
+                    {
+                        string customDelimiter = input.Substring(3, endIndex - 3);
+                        delimiters.Add(customDelimiter);
+                        input = input.Substring(endIndex + 2); // Skip past "]\n"
+                    }
+                }
+                else if (input.Length > 3 && input[3] == '\n')
+                {
+                    delimiters.Add(input[2].ToString());
+                    input = input.Substring(4);
+                }
             }
 
             var numbers = input.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries).ToArray();
